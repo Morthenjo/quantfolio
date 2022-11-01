@@ -1,37 +1,37 @@
 const Test = () => {
-  var Highcharts = require("highcharts");
-  // Load module after Highcharts is loaded
+  let Highcharts = require("highcharts");
   require("highcharts/modules/exporting")(Highcharts);
-  // Create the chart
-  Highcharts.chart("container", {
-    chart: {
-      type: "bar",
-    },
-    title: {
-      text: "Fruit Consumption",
-    },
-    xAxis: {
-      categories: ["Apples", "Bananas", "Oranges"],
-    },
-    yAxis: {
+  document.addEventListener("DOMContentLoaded", function () {
+    Highcharts.chart("container", {
+      chart: {
+        type: "bar",
+      },
       title: {
-        text: "Fruit eaten",
+        text: "Fruit Consumption",
       },
-    },
-    series: [
-      {
-        name: "Jane",
-        data: [1, 0, 4],
+      xAxis: {
+        categories: ["Apples", "Bananas", "Oranges"],
       },
-      {
-        name: "John",
-        data: [5, 7, 3],
+      yAxis: {
+        title: {
+          text: "Fruit eaten",
+        },
       },
-    ],
+      series: [
+        {
+          name: "Jane",
+          data: [1, 0, 4],
+        },
+        {
+          name: "John",
+          data: [5, 7, 3],
+        },
+      ],
+    });
   });
   return (
     <>
-      <div id="container" style="width:100%; height:400px;"></div>
+      <div id="container"></div>
     </>
   );
 };
