@@ -1,7 +1,11 @@
+import { useEffect } from "react";
+import Highcharts from "highcharts";
+import exporting from "highcharts/modules/exporting";
+
 const Test = () => {
-  let Highcharts = require("highcharts");
-  require("highcharts/modules/exporting")(Highcharts);
-  document.addEventListener("load", function () {
+  exporting(Highcharts);
+
+  useEffect(() => {
     Highcharts.chart("container", {
       chart: {
         type: "bar",
@@ -28,10 +32,12 @@ const Test = () => {
         },
       ],
     });
-  });
+  }, []);
+
   return (
     <>
-      <div id="container"></div>
+      <h1>Click to show graph</h1>
+      <div id="container" accessibility="false"></div>
     </>
   );
 };
