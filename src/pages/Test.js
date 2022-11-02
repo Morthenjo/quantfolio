@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Highcharts from "highcharts";
 import exporting from "highcharts/modules/exporting";
+// import axios from "axios";
 
 const Test = () => {
   exporting(Highcharts);
@@ -8,7 +9,7 @@ const Test = () => {
   useEffect(() => {
     Highcharts.chart("container", {
       chart: {
-        type: "bar",
+        type: "line",
       },
       title: {
         text: "Fruit Consumption",
@@ -36,7 +37,6 @@ const Test = () => {
 
   return (
     <>
-      <h1>Click to show graph</h1>
       <div id="container" accessibility="false"></div>
     </>
   );

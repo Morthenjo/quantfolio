@@ -1,13 +1,13 @@
 import { Box, Logo } from "../components/Styled";
 import Quantfolio from "../pages/quantfolio.png";
-import Test from "./Test";
+// import Test from "./Test";
+import Test2 from "./Test2";
 
 const LandingPage = () => {
   return (
     <Box>
       <Logo src={Quantfolio} alt="quantfol.io" />
-      <h1>bruh</h1>
-      <Test />
+      <Test2 />
     </Box>
   );
 };
