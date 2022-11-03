@@ -87,6 +87,7 @@ const Test2 = () => {
           },
           xAxis: {
             labels: {
+              enabled: false,
               style: {
                 color: "white",
               },
@@ -94,10 +95,17 @@ const Test2 = () => {
           },
           yAxis: {
             labels: {
+              enabled: false,
               style: {
                 color: "white",
               },
             },
+          },
+          scrollbar: {
+            enabled: false,
+          },
+          navigator: {
+            enabled: false,
           },
           legend: {
             backgroundColor: "white",
