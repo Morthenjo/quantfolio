@@ -7,6 +7,6 @@ export const Box = styled.div`
 export const Logo = styled.img`
   object-fit: contain;
   width: 30%;
-  margin: 0 auto;
+  margin: 1rem auto;
   display: block;
 `;
