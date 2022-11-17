@@ -8,7 +8,7 @@ const Test2 = () => {
 
   let [data, setData] = useState();
   // let [data2, setData2] = useState();
-  let [AAPLData, setAAPLData] = useState();
+  let AAPLData = [];
 
   useEffect(() => {
     axios
@@ -20,14 +20,15 @@ const Test2 = () => {
       .get("https://stockdata.test.quantfolio.dev/ticker/AAPL:NASDAQ/values")
       .then((res) => {
         res.data.forEach((e) => {
-          setAAPLData([e.datetime + ", " + e.open]);
+          AAPLData.push([
+            Date.parse(e.datetime),
+            parseFloat(e.open.replace(/,/g, ".")),
+          ]);
         });
+        // console.log(data);
+        console.log(AAPLData);
       });
   }, []);
-
-  useEffect(() => {
-    console.log(AAPLData);
-  }, [AAPLData]);
 
   useEffect(() => {
     Highcharts.setOptions({
