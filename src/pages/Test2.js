@@ -6,27 +6,19 @@ import axios from "axios";
 const Test2 = () => {
   exporting(Highcharts);
 
-  let [data, setData] = useState();
-  // let [data2, setData2] = useState();
+  // let [data, setData] = useState();
+  let [data2, setData2] = useState();
+  // let [data3, setData3] = useState();
   let AAPLData = [];
 
   useEffect(() => {
     axios
-      .get("https://demo-live-data.highcharts.com/aapl-c.json")
-      .then((res) => {
-        setData(res.data);
-      });
-    axios
       .get("https://stockdata.test.quantfolio.dev/ticker/AAPL:NASDAQ/values")
       .then((res) => {
         res.data.forEach((e) => {
-          AAPLData.push([
-            Date.parse(e.datetime),
-            parseFloat(e.open.replace(/,/g, ".")),
-          ]);
+          AAPLData.push([Date.parse(e.datetime), parseFloat(e.open)]);
         });
-        // console.log(data);
-        console.log(AAPLData);
+        setData2(AAPLData.reverse());
       });
   }, []);
 
@@ -107,14 +99,15 @@ const Test2 = () => {
         ],
         inputEnabled: false,
       },
-      xAxis: {
-        labels: {
-          enabled: false,
-          style: {
-            color: "white",
-          },
-        },
-      },
+      // xAxis: {
+      //   type: "category",
+      //   labels: {
+      //     enabled: false,
+      //     style: {
+      //       color: "white",
+      //     },
+      //   },
+      // },
       yAxis: {
         labels: {
           enabled: false,
@@ -142,20 +135,11 @@ const Test2 = () => {
 
       series: [
         {
-          name: "AAPL",
-          data: data,
-          color: "#5DADE2",
-          tooltip: {
-            valueDecimals: 2,
-          },
-        },
-        {
-          name: "bruh",
-          data: AAPLData,
+          data: data2,
         },
       ],
     });
-  }, [data, AAPLData]);
+  }, [data2]);
 
   return (
     <>
