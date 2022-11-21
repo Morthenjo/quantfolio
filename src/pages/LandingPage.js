@@ -8,7 +8,7 @@ const LandingPage = () => {
   return (
     <Box>
       <Logo src={Quantfolio} alt="quantfol.io" />
-      <Test2 />
+      <Test />
     </Box>
   );
 };

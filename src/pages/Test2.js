@@ -6,10 +6,14 @@ import axios from "axios";
 const Test2 = () => {
   exporting(Highcharts);
 
-  // let [data, setData] = useState();
-  let [data2, setData2] = useState();
-  // let [data3, setData3] = useState();
+  let [AAPL, setAAPL] = useState([]);
+  let [MSFT, setMSFT] = useState([]);
+  let [ADBE, setADBE] = useState([]);
+  let [GOOGL, setGOOGL] = useState([]);
   let AAPLData = [];
+  let MSFTData = [];
+  let ADBEData = [];
+  let GOOGLData = [];
 
   useEffect(() => {
     axios
@@ -18,7 +22,31 @@ const Test2 = () => {
         res.data.forEach((e) => {
           AAPLData.push([Date.parse(e.datetime), parseFloat(e.open)]);
         });
-        setData2(AAPLData.reverse());
+        setAAPL(AAPLData.reverse());
+      });
+    axios
+      .get("https://stockdata.test.quantfolio.dev/ticker/MSFT:NASDAQ/values")
+      .then((res) => {
+        res.data.forEach((e) => {
+          MSFTData.push([Date.parse(e.datetime), parseFloat(e.open)]);
+        });
+        setMSFT(MSFTData.reverse());
+      });
+    axios
+      .get("https://stockdata.test.quantfolio.dev/ticker/ADBE:NASDAQ/values")
+      .then((res) => {
+        res.data.forEach((e) => {
+          ADBEData.push([Date.parse(e.datetime), parseFloat(e.open)]);
+        });
+        setADBE(ADBEData.reverse());
+      });
+    axios
+      .get("https://stockdata.test.quantfolio.dev/ticker/GOOGL:NASDAQ/values")
+      .then((res) => {
+        res.data.forEach((e) => {
+          GOOGLData.push([Date.parse(e.datetime), parseFloat(e.open)]);
+        });
+        setGOOGL(GOOGLData.reverse());
       });
   }, []);
 
@@ -135,11 +163,24 @@ const Test2 = () => {
 
       series: [
         {
-          data: data2,
+          name: "AAPL",
+          data: AAPL,
+        },
+        {
+          name: "MSFT",
+          data: MSFT,
+        },
+        {
+          name: "ADBE",
+          data: ADBE,
+        },
+        {
+          name: "GOOGL",
+          data: GOOGL,
         },
       ],
     });
-  }, [data2]);
+  }, [AAPL, MSFT, ADBE, GOOGL]);
 
   return (
     <>
