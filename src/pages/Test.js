@@ -146,10 +146,9 @@ const Test = () => {
         x: -40,
         y: -347,
       },
-
+      tooltip: {},
       series: [...ticker.series],
     });
-    console.log(ticker);
   }, [ticker]);
 
   return (
