@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/quantfolio/static/css/main.fa1629fe.css",
+    "main.js": "/quantfolio/static/js/main.8a73875c.js",
+    "static/media/quantfolio.png": "/quantfolio/static/media/quantfolio.2ef93c5e75344a7d4855.png",
+    "index.html": "/quantfolio/index.html",
+    "main.fa1629fe.css.map": "/quantfolio/static/css/main.fa1629fe.css.map",
+    "main.8a73875c.js.map": "/quantfolio/static/js/main.8a73875c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fa1629fe.css",
+    "static/js/main.8a73875c.js"
+  ]
+}
