@@ -6,7 +6,35 @@ import axios from "axios";
 const Test = () => {
   exporting(Highcharts);
 
-  useEffect(() => {}, []);
+  let [ticker, setTicker] = useState([]);
+
+  let data = [];
+
+  useEffect(() => {
+    axios.get("https://stockdata.test.quantfolio.dev/ticker").then((resp) => {
+      resp.data.tickers.forEach((e) => {
+        axios
+          .get(`https://stockdata.test.quantfolio.dev/ticker/${e}`)
+          .then((res) => {
+            const reversed = res.data.values
+              .map((el) => {
+                return [Date.parse(el.datetime), parseFloat(el.open)];
+              })
+              .reverse();
+            data.push({
+              name: `${res.data.meta.symbol}`,
+              data: reversed,
+            });
+          })
+          .then(() => {
+            setTicker({
+              ...ticker,
+              series: data,
+            });
+          });
+      });
+    });
+  }, []);
 
   useEffect(() => {
     Highcharts.chart("container", {
@@ -19,17 +47,18 @@ const Test = () => {
       },
       yAxis: {
         title: {
-          text: "Exchange Rate",
+          text: "Value",
         },
       },
       series: [
-        {
-          name: "yo",
-          data: 3,
-        },
+        ticker.forEach({
+          name: ticker.series.name,
+          data: ticker.series.data,
+        }),
       ],
     });
-  }, []);
+    console.log(ticker);
+  }, [ticker]);
 
   return (
     <>
